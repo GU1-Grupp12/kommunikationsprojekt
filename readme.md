@@ -9,6 +9,7 @@ Due kortet ska skicka en trådlös signal(som generas av en signal generator) ti
   - Kräver en interuptt som läser av
 - Kunna skicka saker via USART.
   - Har USART_functions modulen.
+- Skärm med GUI
 
 ### Ardurino Due
 - Kunna läsa av USART meddeladnet.
