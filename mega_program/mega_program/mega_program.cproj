@@ -203,6 +203,12 @@
     <None Include="src\asf.h">
       <SubType>compile</SubType>
     </None>
+    <Compile Include="src\ADC_functions.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\ADC_functions.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\ASF\common\boards\user_board\init.c">
       <SubType>compile</SubType>
     </Compile>
