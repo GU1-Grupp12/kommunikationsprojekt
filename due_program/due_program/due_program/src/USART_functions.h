@@ -11,7 +11,7 @@
 #define USART_FUNCTIONS_H_
 
 void USARTInit();
-void USARTsend();
+void USARTsend(uint8_t d);
 
 uint8_t USARTGet();
 

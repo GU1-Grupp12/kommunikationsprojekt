@@ -5,17 +5,19 @@
  *  Author: Spellabbet
  */ 
 
+#include "USART_functions.h"
+
 void USARTInit()
 {
 	
 }
 
-void USARTGet()
+void USARTsend(uint8_t d d)
 {
 	
 }
 
-uint8_t USARTsend(char d)
+uint8_t d USARTGet()
 {
 	return 0;
 }
