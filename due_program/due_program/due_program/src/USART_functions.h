@@ -10,8 +10,9 @@
 #ifndef USART_FUNCTIONS_H_
 #define USART_FUNCTIONS_H_
 
+void USARTInit();
+void USARTsend();
 
-
-
+uint8_t USARTGet();
 
 #endif /* USART_FUNCTIONS_H_ */

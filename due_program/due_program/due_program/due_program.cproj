@@ -535,6 +535,12 @@
     <Compile Include="src\ASF\thirdparty\freertos\freertos-7.3.0\source\FreeRTOS_CLI.c">
       <SubType>compile</SubType>
     </Compile>
+    <Compile Include="src\error_functions.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\error_functions.h">
+      <SubType>compile</SubType>
+    </Compile>
     <None Include="src\config\FreeRTOSConfig.h">
       <SubType>compile</SubType>
     </None>
