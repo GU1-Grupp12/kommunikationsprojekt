@@ -9,15 +9,13 @@
 
 void USARTInit()
 {
-	
+	*ptr_UART_CR |= (1u<<4);					//Set RXEN.
+	*ptr_UART_BRGR |= (0b1000100011<<0);	//Set baudrate(9600). CD==0b1000100011==546
 }
 
-void USARTsend(uint8_t d d)
+uint8_t USARTGet()
 {
+	while(!(*ptr_UART_SR & (1u<<0))) { } // se om det tagits emot något nytt, vänta annars.
 	
-}
-
-uint8_t d USARTGet()
-{
 	return 0;
 }

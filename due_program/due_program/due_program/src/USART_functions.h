@@ -9,10 +9,13 @@
 
 #ifndef USART_FUNCTIONS_H_
 #define USART_FUNCTIONS_H_
-
+#define UART_BASE_ADDRESS
+uint32_t *const ptr_UART_CR = (uint32_t *) (UART_BASE_ADDRESS + 0x0000U);
+uint32_t *const ptr_UART_MR = (uint32_t *) (UART_BASE_ADDRESS + 0x0004U);
+uint32_t *const ptr_UART_SR = (uint32_t *) (UART_BASE_ADDRESS + 0x0014U);
+uint32_t *const ptr_UART_RHR = (uint32_t *) (UART_BASE_ADDRESS + 0x0018U);	
+uint32_t *const ptr_UART_BRGR = (uint32_t *) (UART_BASE_ADDRESS + 0x0020U);
 void USARTInit();
-void USARTsend(uint8_t d);
-
 uint8_t USARTGet();
 
 #endif /* USART_FUNCTIONS_H_ */
