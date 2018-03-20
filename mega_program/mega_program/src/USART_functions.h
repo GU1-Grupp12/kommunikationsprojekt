@@ -5,6 +5,7 @@
  *  Author: Spellabbet
  */ 
 
+#include <stdint.h>
 
 #ifndef USART_FUNCTIONS_H_
 #define USART_FUNCTIONS_H_
@@ -17,5 +18,6 @@ void USARTInit();
 void USARTSend(unsigned char d);
 
 unsigned char USARTGet();
+uint8_t lastGet;
 
 #endif /* USART_FUNCTIONS_H_ */

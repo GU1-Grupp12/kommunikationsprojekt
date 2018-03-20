@@ -1,4 +1,5 @@
 #include "USART_functions.h"
+#include "error_functions.h"
 
 #include <avr/io.h>
 #include <asf.h>
@@ -18,5 +19,7 @@ void USARTSend(unsigned char d) {
 
 unsigned char USARTGet() {
 	while(!((UCSR0A) & (1<<RXC0))) {}
-	return UDR0;
+	lastGet = UDR0;
+	offset = offset + 1;
+	return lastGet;
 }

@@ -203,9 +203,6 @@
     <None Include="src\asf.h">
       <SubType>compile</SubType>
     </None>
-    <Compile Include="LCD_functions.h">
-      <SubType>compile</SubType>
-    </Compile>
     <Compile Include="src\ADC_functions.c">
       <SubType>compile</SubType>
     </Compile>
@@ -287,7 +284,10 @@
     <Compile Include="src\delay_asm.s">
       <SubType>compile</SubType>
     </Compile>
-    <Compile Include="src\lcd_asm.s">
+    <Compile Include="src\error_functions.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\error_functions.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\main.c">
