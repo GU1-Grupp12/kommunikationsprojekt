@@ -11,9 +11,22 @@
 uint8_t errorChecking()
 {
 	buffer[offset] = lastGet;
-	if(offset >= 2)
+	if(offset >= SIZE)
 	{
 		offset = 0;
+		int i;
+		int j;
+		for(i = 0; i < SIZE; i++)
+		{
+			for(j = 0; j < SIZE; j++)
+			{
+				if(buffer[i] != buffer[j])
+					return ERROR_FOUND;
+			}	
+		}
+		
+		return NO_ERROR;
+		
 		return (buffer[0] != buffer[1]) ? ERROR_FOUND : NO_ERROR;
 	}
 	

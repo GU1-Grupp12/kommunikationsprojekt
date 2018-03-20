@@ -14,8 +14,9 @@
 #define NOT_DONE 3
 #define ERROR_FOUND 2 
 #define NO_ERROR 1
+#define SIZE 2
 
-uint8_t buffer[2];
+uint8_t buffer[SIZE];
 uint8_t offset;
 
 uint8_t errorChecking();
