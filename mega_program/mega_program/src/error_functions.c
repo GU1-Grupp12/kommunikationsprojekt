@@ -14,8 +14,8 @@ uint8_t errorChecking()
 	if(offset >= SIZE)
 	{
 		offset = 0;
-		int i;
-		int j;
+		uint8_t i;
+		uint8_t j;
 		for(i = 0; i < SIZE; i++)
 		{
 			for(j = 0; j < SIZE; j++)
