@@ -71,6 +71,8 @@ static const uint8_t CHARS[][5]{
 	 {0x61, 0x51, 0x49, 0x45, 0x43} // 5a Z
 	};
 
+static const uint8_t CMDS[6]{0x21, 0x13, 0xC0, 0x04, 0x20, 0x0C};
+
 void LCDWriteByte(uint8_t d)
 {
 	uint8_t t = d;
@@ -95,6 +97,25 @@ void LCDWriteByte(uint8_t d)
 	SET_BIT(PORTB, 6);
 }
 
+void LCDWriteCommand(uint8_t d)
+{
+	CLR_BIT(PORTB, 4);
+	LCDWriteByte(d);
+}
+
+void LCDWriteChr(char d)
+{
+	SET_BIT(PORTB, 4);
+	char t = (d - OFFSET)*CHR_WIDTH;
+	
+}
+
 void LCDInit()
 {
+	int i = 0;
+	for(i = 0; i < 20; i++) delay_1_micros();
+	SET_BIT(PORTB, 5);
+	for(i = 0; i < 10; i++) delay_1_micros();
+	SET_BIT(PORTB, 6);
+	for(i = 0; i < 6; i++) LCDWriteCommand(CMDS[i]);
 }
