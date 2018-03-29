@@ -221,9 +221,6 @@
     <None Include="src\ASF\mega\utils\progmem.h">
       <SubType>compile</SubType>
     </None>
-    <None Include="src\config\conf_board.h">
-      <SubType>compile</SubType>
-    </None>
     <None Include="src\ASF\mega\utils\preprocessor\preprocessor.h">
       <SubType>compile</SubType>
     </None>
@@ -275,6 +272,12 @@
     <None Include="src\ASF\mega\drivers\adc\adc_megaxx0_1_4.h">
       <SubType>compile</SubType>
     </None>
+    <Compile Include="src\common.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\config\conf_board.h">
+      <SubType>compile</SubType>
+    </Compile>
     <Compile Include="src\delay.c">
       <SubType>compile</SubType>
     </Compile>
@@ -288,6 +291,12 @@
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\error_functions.h">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\LCD_functions.c">
+      <SubType>compile</SubType>
+    </Compile>
+    <Compile Include="src\LCD_functions.h">
       <SubType>compile</SubType>
     </Compile>
     <Compile Include="src\main.c">
