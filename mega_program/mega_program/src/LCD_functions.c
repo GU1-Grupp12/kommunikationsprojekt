@@ -6,6 +6,8 @@
  */ 
 
 #include "LCD_functions.h"
+#include "common.h"
+#include "delay.h"
 
 static const uint8_t CHARS[][5]{
 	 {0x00, 0x00, 0x00, 0x00, 0x00}, // 20
@@ -68,3 +70,31 @@ static const uint8_t CHARS[][5]{
 	 {0x07, 0x08, 0x70, 0x08, 0x07}, // 59 Y
 	 {0x61, 0x51, 0x49, 0x45, 0x43} // 5a Z
 	};
+
+void LCDWriteByte(uint8_t d)
+{
+	uint8_t t = d;
+	
+	CLR_BIT(PORTB, 6);
+	int i;
+	for(i = 0; i < 8; i++) 
+	{
+		uint8_t b = 0x80;
+		b = t & b;
+	
+		if(b != 0) SET_BIT(PORTH, 6);
+		CLR_BIT(PORTH, 6);
+		
+		SET_BIT(PORTH, 5);
+		delay_1_micros();
+		CLR_BIT(PORTH, 5);
+		
+		t = t << 1;
+	}
+	
+	SET_BIT(PORTB, 6);
+}
+
+void LCDInit()
+{
+}
