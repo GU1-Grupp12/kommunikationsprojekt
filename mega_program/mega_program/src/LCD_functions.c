@@ -5,11 +5,12 @@
  *  Author: Spellabbet
  */ 
 
+#include <asf.h>
 #include "LCD_functions.h"
 #include "common.h"
 #include "delay.h"
 
-static const uint8_t CHARS[][5]{
+static const uint8_t CHARS[][5] = {
 	 {0x00, 0x00, 0x00, 0x00, 0x00}, // 20
 	 {0x00, 0x00, 0x5f, 0x00, 0x00}, // 21 !
 	 {0x00, 0x07, 0x00, 0x07, 0x00}, // 22 "
@@ -71,7 +72,7 @@ static const uint8_t CHARS[][5]{
 	 {0x61, 0x51, 0x49, 0x45, 0x43} // 5a Z
 	};
 
-static const uint8_t CMDS[6]{0x21, 0x13, 0xC0, 0x04, 0x20, 0x0C};
+static const uint8_t CMDS[6] = {0x21, 0x13, 0xC0, 0x04, 0x20, 0x0C};
 
 void LCDWriteByte(uint8_t d)
 {
@@ -105,9 +106,16 @@ void LCDWriteCommand(uint8_t d)
 
 void LCDWriteChr(char d)
 {
+	int i;
+	int j;
+	for(i = 0; i < 10; i++) delay_1_micros();
 	SET_BIT(PORTB, 4);
 	char t = (d - OFFSET)*CHR_WIDTH;
-	
+	for(i = 0; i < 5; i++)
+	{
+		for(j = 0; j < 20; j++) delay_1_micros();
+		LCDWriteByte(CHARS[t, i]);
+	}
 }
 
 void LCDInit()

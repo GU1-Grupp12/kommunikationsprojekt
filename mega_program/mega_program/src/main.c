@@ -29,6 +29,7 @@
  * Support and FAQ: visit <a href="http://www.atmel.com/design-support/">Atmel Support</a>
  */
 #include <asf.h>
+#include "LCD_functions.h"
 
 int main (void)
 {
@@ -36,5 +37,9 @@ int main (void)
 
 	board_init();
 
-	/* Insert application code here, after the board has been initialized. */
+	LCDInit();
+	
+	DDRB = 0xFF;
+	
+	LCDWriteChr('X');
 }
