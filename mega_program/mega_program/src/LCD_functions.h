@@ -12,9 +12,11 @@
 #define CHR_WIDTH 1
 #define OFFSET 0
 
-void LCDInit();
+void LCDInit(void);
 void LCDWriteByte(uint8_t d);
-void LCDWriteChr(char d);
+void LCDWriteChr(uint8_t d);
 void LCDWriteCommand(uint8_t d);
+void LCDWriteStr(char * t);
+void LCDClear(void);
 
 #endif /* LCD_FUNCTIONS_H_ */

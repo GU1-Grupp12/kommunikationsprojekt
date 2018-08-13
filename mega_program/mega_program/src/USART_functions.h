@@ -14,10 +14,10 @@
 #define F_CPU 10000
 #define B ((F_CPU / 4 / BAUD - 1) / 2)
 
-void USARTInit();
+void USARTInit(void);
 void USARTSend(unsigned char d);
 
-unsigned char USARTGet();
+unsigned char USARTGet(void);
 uint8_t lastGet;
 
 #endif /* USART_FUNCTIONS_H_ */

@@ -10,7 +10,7 @@
 #include "common.h"
 #include "delay.h"
 
-static const uint8_t CHARS[][5] = {
+static const uint8_t CHARS[59][5] = {
 	 {0x00, 0x00, 0x00, 0x00, 0x00}, // 20
 	 {0x00, 0x00, 0x5f, 0x00, 0x00}, // 21 !
 	 {0x00, 0x07, 0x00, 0x07, 0x00}, // 22 "
@@ -69,24 +69,46 @@ static const uint8_t CHARS[][5] = {
 	 {0x3f, 0x40, 0x38, 0x40, 0x3f}, // 57 W
 	 {0x63, 0x14, 0x08, 0x14, 0x63}, // 58 X
 	 {0x07, 0x08, 0x70, 0x08, 0x07}, // 59 Y
-	 {0x61, 0x51, 0x49, 0x45, 0x43} // 5a Z
+	 {0x61, 0x51, 0x49, 0x45, 0x43} // 5a Z 
 	};
 
 static const uint8_t CMDS[6] = {0x21, 0x13, 0xC0, 0x04, 0x20, 0x0C};
+
+void LCDClear(void) 
+{
+	uint8_t x, y;
+	
+	for(y = 0; y < 8; y++)
+		for(x = 0; x < 16; x++)
+		{
+			LCDWriteCommand(0x40 | y);
+			LCDWriteCommand(0x80 | x * 6);
+			LCDWriteChr(0x20);
+		}	
+}
 
 void LCDWriteByte(uint8_t d)
 {
 	uint8_t t = d;
 	
 	CLR_BIT(PORTB, 6);
-	int i;
+	uint8_t i;
 	for(i = 0; i < 8; i++) 
 	{
-		uint8_t b = 0x80;
-		b = t & b;
+		//uint8_t b = 0x80;
+		//b = t & b;
 	
-		if(b != 0) SET_BIT(PORTH, 6);
-		CLR_BIT(PORTH, 6);
+		//if(b != 0) SET_BIT(PORTH, 6);
+		//CLR_BIT(PORTH, 6);
+		
+		if(d & 0x80) 
+		{
+			SET_BIT(PORTH, 6);
+		} 
+		else 
+		{
+			CLR_BIT(PORTH, 6);
+		}
 		
 		SET_BIT(PORTH, 5);
 		delay_1_micros();
@@ -104,23 +126,42 @@ void LCDWriteCommand(uint8_t d)
 	LCDWriteByte(d);
 }
 
-void LCDWriteChr(char d)
+void LCDWriteChr(uint8_t d)
 {
-	int i;
-	int j;
+	uint8_t i;
+	uint8_t j;
 	for(i = 0; i < 10; i++) delay_1_micros();
 	SET_BIT(PORTB, 4);
-	char t = (d - OFFSET)*CHR_WIDTH;
-	for(i = 0; i < 5; i++)
+	uint8_t t = (d - OFFSET);//*CHR_WIDTH;
+	for(i = 0; i < 6; i++)
 	{
 		for(j = 0; j < 20; j++) delay_1_micros();
-		LCDWriteByte(CHARS[t, i]);
+		LCDWriteByte(CHARS[t][i]);
+	}
+	LCDWriteByte(0x00);
+}
+
+void LCDWriteStr(char * t) 
+{
+	char *ptr;
+	ptr = t;
+	uint8_t i = 0;
+	while(*ptr != '\0')
+	{
+		LCDWriteChr((*ptr++));
+		for(i = 0; i < 10; i++) delay_1_micros();
 	}
 }
 
-void LCDInit()
+void LCDInit(void)
 {
-	int i = 0;
+	SET_BIT(DDRH, 5);
+	SET_BIT(DDRH, 6);
+	SET_BIT(DDRB, 4);		
+	SET_BIT(DDRB, 5);
+	SET_BIT(DDRB, 6);
+	
+	uint8_t i = 0;
 	for(i = 0; i < 20; i++) delay_1_micros();
 	SET_BIT(PORTB, 5);
 	for(i = 0; i < 10; i++) delay_1_micros();

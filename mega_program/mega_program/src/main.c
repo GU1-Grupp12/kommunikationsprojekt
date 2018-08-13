@@ -39,7 +39,9 @@ int main (void)
 
 	LCDInit();
 	
-	DDRB = 0xFF;
+	LCDClear();
 	
-	LCDWriteChr('X');
+	sei();
+	
+	LCDWriteChr('x');
 }

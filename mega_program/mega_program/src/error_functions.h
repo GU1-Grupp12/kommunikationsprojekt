@@ -19,6 +19,6 @@
 uint8_t buffer[SIZE];
 uint8_t offset;
 
-uint8_t errorChecking();
+uint8_t errorChecking(void);
 
 #endif /* ERROR_FUNCTIONS_H_ */
