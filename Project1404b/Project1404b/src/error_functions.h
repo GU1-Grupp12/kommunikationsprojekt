@@ -4,7 +4,7 @@
  * Created: 2018-03-13 10:17:44
  *  Author: Spellabbet
  */ 
-
+#include <asf.h>
 #include <inttypes.h>
 
 #ifndef ERROR_FUNCTIONS_H_

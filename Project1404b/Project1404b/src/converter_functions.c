@@ -4,7 +4,6 @@
  * Created: 2018-03-13 09:14:48
  *  Author: Spellabbet
  */ 
-#include <asf.h>
 #include "converter_functions.h"
 
 #define M 11
@@ -22,7 +21,7 @@ void TC0_Handler(void)
 	/* Avoid compiler warning */
 	UNUSED(ul_dummy);
 	
-		//put test pin HIGH 
+	ioport_set_pin_level(1,HIGH);		//put test pin HIGH 
 	
 	adc_start(ADC);
 	while((adc_get_status(ADC) & 0x1<<24)==0);  //Wait until DRDY get high
@@ -89,7 +88,7 @@ void TC0_Handler(void)
 	
 	//***********
 		
-	dacc_write_conversion_data(DACC,outvalue);	//send output value to DAC
+	ioport_set_pin_level(1,LOW);		//put test pin LOW
 	
 }
 
@@ -101,17 +100,6 @@ void adcSetup()
 	adc_set_resolution(ADC, ADC_MR_LOWRES_BITS_12);
 	adc_enable_channel(ADC, ADC_CHANNEL_10);				
 	adc_configure_trigger(ADC, ADC_TRIG_SW, 0);			
-}
-
-void dacSetup()
-{
-	pmc_enable_periph_clk(ID_DACC);
-	dacc_reset(DACC);
-	dacc_set_transfer_mode(DACC, 0);
-	dacc_set_timing(DACC,1,1,0);			
-	
-	dacc_set_channel_selection(DACC,1);		
-	dacc_enable_channel(DACC, 1);			
 }
 
 void timerSetup()

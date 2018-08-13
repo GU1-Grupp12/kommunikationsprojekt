@@ -59,9 +59,6 @@
 #include <compiler.h>
 #include <status_codes.h>
 
-// From module: DACC - Digital-to-Analog Converter
-#include <dacc.h>
-
 // From module: GPIO - General purpose Input/Output
 #include <gpio.h>
 

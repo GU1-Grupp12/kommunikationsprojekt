@@ -15,6 +15,7 @@
 
 /* General type conversion for MATLAB generated C-code  */
 #include "tmwtypes.h"
+#include <asf.h>
 /* 
  * Expected path to tmwtypes.h 
  * C:\Program Files\MATLAB\R2017b\extern\include\tmwtypes.h 

@@ -6,7 +6,7 @@
  */ 
 
 #include <inttypes.h>
-
+#include <asf.h>
 #ifndef CONVERTER_FUNCTIONS_H_
 #define CONVERTER_FUNCTIONS_H_
 
