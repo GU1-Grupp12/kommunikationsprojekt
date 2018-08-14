@@ -45,6 +45,6 @@ int main (void)
 		LCDWriteCommand(0x40);
 		
 		LCDWriteStr("WHAT I GET: ");
-		LCDWriteStr(USARTGet());
+		LCDWriteChr(USARTGet());
 	}
 }
