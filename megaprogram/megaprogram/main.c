@@ -37,7 +37,7 @@ int main (void)
 	/* Insert system clock initialization code here (sysclk_init()). */
 	LCDInit();
 	
-	USARTInit();
+	UARTInit();
 	
 	while (1)
 	{
@@ -45,6 +45,11 @@ int main (void)
 		LCDWriteCommand(0x40);
 		
 		LCDWriteStr("WHAT I GET: ");
-		LCDWriteChr(USARTGet());
+		LCDWriteChr(UARTGet());
+		
+		LCDWriteCommand(0x80);
+		LCDWriteCommand(0x40);
+		LCDClear();
+		LCDWriteStr("                                             ");
 	}
 }

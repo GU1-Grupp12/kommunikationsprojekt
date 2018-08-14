@@ -10,14 +10,15 @@
 #ifndef USART_FUNCTIONS_H_
 #define USART_FUNCTIONS_H_
 
-#define BAUD 9600
-#define F_CPU 10000
+#define BAUD 1200
+#define F_CPU 16000000
 #define B ((F_CPU / 4 / BAUD - 1) / 2)
 
-void USARTInit(void);
-void USARTSend(unsigned char d);
+#include <util/setbaud.h>
 
-unsigned char USARTGet(void);
+void UARTInit(void);
+
+unsigned char UARTGet(void);
 uint8_t lastGet;
 
 #endif /* USART_FUNCTIONS_H_ */
