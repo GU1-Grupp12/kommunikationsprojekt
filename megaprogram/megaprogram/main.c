@@ -48,40 +48,39 @@ int main (void)
 	
 	while (1)
 	{
-		LCDWriteCommand(0x80);
-		LCDWriteCommand(0x40);
-		
-		LCDWriteStr("WHAT I GET:");
-		
 		uint8_t i = 0;
-		delay = delay + 1;
-		if(delay >= 1)
+		for(i = 0; i < 2; i++)
 		{
-			for(i = 0; i < 3; i++) 
+			toPrint[i] = UARTGet();
+			if(avgIndex < 16) avgBuffer[avgIndex++] = toPrint[i];
+			if(toPrint[i] < 48 || toPrint[i] > 57) toPrint[i] = ' ';
+		}
+		
+		
+		delay = delay + 1;
+		if(delay >= 16)
+		{
+			LCDWriteCommand(0x80);
+			LCDWriteCommand(0x40);
+			
+			LCDWriteStr("WHAT I GET:");
+			
+			for(i = 0; i < 2; i++) LCDWriteChr(toPrint[i]);//UARTGet());
+		
+			/*LCDWriteStr("AVG:");
+			if(avgIndex >= 16-1) 
 			{
-				toPrint[i] = UARTGet();
-				if(avgIndex < 16) avgBuffer[avgIndex++] = toPrint[i]; 
+				uint16_t sum;
+				for(i = 0; i < 16; i++)
+				{
+					sum = sum + avgBuffer[i];
+				}
+				avgChar = sum/16;
+				avgIndex = 0;
 			}
+			LCDWriteChr(avgChar);*/
+							
 			delay = 0;
 		}
-		
-		for(i = 0; i < 1; i++) LCDWriteChr(toPrint[i]);//UARTGet());
-		
-		/*LCDWriteStr("AVG:");
-		if(avgIndex >= 16-1) 
-		{
-			uint16_t sum;
-			for(i = 0; i < 16; i++)
-			{
-				sum = sum + avgBuffer[i];
-			}
-			avgChar = sum/16;
-			avgIndex = 0;
-		}
-		LCDWriteChr(avgChar);*/
-		LCDWriteCommand(0x80);
-		LCDWriteCommand(0x40);
-		LCDClear();
-		LCDWriteStr("                                             ");
 	}
 }
