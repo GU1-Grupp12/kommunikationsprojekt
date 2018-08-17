@@ -45,16 +45,17 @@ int main (void)
 	char avgBuffer[16];
 	uint8_t avgIndex;
 	char avgChar;
-	
+	LCDWriteStr("                                                                                                                       ");
 	while (1)
 	{
 		uint8_t i = 0;
-		for(i = 0; i < 2; i++)
-		{
-			toPrint[i] = UARTGet();
-			if(avgIndex < 16) avgBuffer[avgIndex++] = toPrint[i];
-			if(toPrint[i] < 48 || toPrint[i] > 57) toPrint[i] = ' ';
-		}
+		if(UARTGet() == '*')
+			for(i = 0; i < 2; i++)
+			{
+				toPrint[i] = UARTGet();
+				if(avgIndex < 16) avgBuffer[avgIndex++] = toPrint[i];
+				if(toPrint[i] < 48 || toPrint[i] > 57) toPrint[i] = ' ';
+			}
 		
 		
 		delay = delay + 1;
@@ -63,7 +64,7 @@ int main (void)
 			LCDWriteCommand(0x80);
 			LCDWriteCommand(0x40);
 			
-			LCDWriteStr("WHAT I GET:");
+			LCDWriteStr("P:");
 			
 			for(i = 0; i < 2; i++) LCDWriteChr(toPrint[i]);//UARTGet());
 			/*LCDWriteStr("AVG:");
