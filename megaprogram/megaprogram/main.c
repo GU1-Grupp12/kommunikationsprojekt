@@ -58,7 +58,7 @@ int main (void)
 		
 		
 		delay = delay + 1;
-		if(delay >= 16)
+		if(delay >= 2)
 		{
 			LCDWriteCommand(0x80);
 			LCDWriteCommand(0x40);
@@ -66,7 +66,6 @@ int main (void)
 			LCDWriteStr("WHAT I GET:");
 			
 			for(i = 0; i < 2; i++) LCDWriteChr(toPrint[i]);//UARTGet());
-		
 			/*LCDWriteStr("AVG:");
 			if(avgIndex >= 16-1) 
 			{
