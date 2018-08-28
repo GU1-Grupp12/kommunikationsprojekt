@@ -45,7 +45,7 @@ int main (void)
 	char avgBuffer[16];
 	uint8_t avgIndex;
 	char avgChar;
-	LCDWriteStr("                                                                                                                       ");
+	
 	while (1)
 	{
 		uint8_t i = 0;
