@@ -1,5 +1,13 @@
 # Vad bör göras?
 
+## Saker som inte fungerar
+
+Att sampligen tar för höga värden?
+
+Att wavetek är fel?
+
+Filtert fel?
+
 ## Hur saker fungerar
 
 Due kortet ska skicka en trådlös signal(som generas av en signal generator) till mega kortet. Mega kortet ska läsa av den här signalen och sedan skicka tillbaka något via USART.
